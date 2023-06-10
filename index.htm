@@ -10,21 +10,19 @@
     <button onclick="subscribe()">Subscribe</button>
 
     <script>
+      addEventListener('load', async () => {
+        let sw = await navigator.serviceWorker.register('./sw.js');
+        console.log(sw);
+      });
+
       async function subscribe() {
         let sw = await navigator.serviceWorker.ready;
         let push = await sw.pushManager.subscribe({
           userVisibleOnly: true,
           applicationServerKey:
-            'BEQCD1J49QR3V7_ryGogZ__5MEfXrY5Uy89wr2ojEKE6sAONKpduQQztkZBnBfhX8nCRxf6CHSq5V_KSd7MiYwA'
+            'BPLkNcM4fyo1kR2hMjzYZMspGzGW9e7uRKDHEJpIsC4F05fp0df7y_s6D9m0Q9SkKbjn2bG6VcZWMOCTO0nZnoI'
         });
         console.log(JSON.stringify(push));
-      }
-
-      if ('serviceWorker' in navigator) {
-        addEventListener('load', async () => {
-          let sw = await navigator.serviceWorker.register('./sw.js');
-          console.log(sw);
-        });
       }
     </script>
   </body>
