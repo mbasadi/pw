@@ -9,15 +9,18 @@ self.addEventListener("push", (event) => {
     data.message || "Here's something you might want to check out.";
   const icon = "images/new-notification.png";
 
-  const notification = new self.Notification(title, {
-    body: message,
-    tag: "simple-push-demo-notification",
-    icon,
-  });
+  event.waitUntil(
+    self.registration.showNotification(title, {
+      body: message,
+      tag: "simple-push-demo-notification",
+      icon,
+    })
+  );
+});
 
-  notification.addEventListener("click", () => {
-    clients.openWindow(
-      "https://developer.mozilla.org/en-US/docs/Web/API/PushEvent"
-    );
-  });
+self.addEventListener("notificationclick", function (event) {
+  event.notification.close();
+  event.waitUntil(
+    clients.openWindow("https://developer.mozilla.org/en-US/docs/Web/API/PushEvent")
+  );
 });
