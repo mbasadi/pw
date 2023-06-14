@@ -7,12 +7,13 @@ self.addEventListener("push", (event) => {
   const title = data.title || "Something Has Happened";
   const message =
     data.message || "Here's something you might want to check out.";
-  const icon = "images/new-notification.png";
+  const icon = data.icon||"images/new-notification.png";
+  const tag = data.tag||"simple-push-Tag";
 
   event.waitUntil(
     self.registration.showNotification(title, {
       body: message,
-      tag: "simple-push-demo-notification",
+      tag,
       icon,
     })
   );
