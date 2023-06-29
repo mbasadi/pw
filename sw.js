@@ -50,6 +50,6 @@ self.addEventListener('notificationclick', function (event) {
     });
 
   event.waitUntil(
-    clients.openWindow(event.action.clickURL)
+    clients.openWindow('/')
   );
 });
