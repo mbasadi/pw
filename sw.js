@@ -40,7 +40,6 @@ self.addEventListener('notificationclick', function (event) {
   event.notification.close();
   console.log('event',event)
   console.log('event.action',event.action)
-  console.log('clickURL',clickURL)
   // Log the URL of each client this service worker controls
   clients.matchAll({ includeUncontrolled: true, type: 'window' })
     .then(windowClients => {
