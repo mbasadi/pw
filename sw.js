@@ -20,6 +20,12 @@ self.addEventListener('push', (event) => {
 
   event.waitUntil(
     self.registration.showNotification(title, {
+      actions: [
+        {
+          action: "click",
+          title:clickURL,
+        },
+      ],
       body: message,
       tag,
       icon,
