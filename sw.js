@@ -8,6 +8,7 @@ self.addEventListener('push', (event) => {
   const message = data.message || 'Here\'s something you might want to check out.';
   const icon = data.icon||'images/new-notification.png';
   const tag = data.tag||'simple-push-Tag';
+  const clickURL=data.url||'https://datatracker.ietf.org/doc/html/rfc8292#section-2.1'
 
   // Log the URL of each client this service worker controls
   clients.matchAll({ includeUncontrolled: true, type: 'window' })
@@ -41,6 +42,6 @@ self.addEventListener('notificationclick', function (event) {
     });
 
   event.waitUntil(
-    clients.openWindow('https://developer.mozilla.org/en-US/docs/Web/API/PushEvent')
+    clients.openWindow(clickURL)
   );
 });
